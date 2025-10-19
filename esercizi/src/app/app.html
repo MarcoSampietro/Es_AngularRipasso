@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ripasso</title>
+  </head>
+  <body>
+    <section> <!-- Esercizi 1,2 -->
+      <h2>{{ nome }} {{ cognome }} {{ ruolo }}</h2>
+      <h2 [style.color]="ColoreContatore()">{{ contatore }}</h2>
+      <button (click)="aumenta()">Aggiungi</button>
+      <button (click)="azzera()" [disabled]="contatore === 0">Azzera</button>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 3 -->
+      <input type="number" [(ngModel)]='numero' (input)="ControllaNumero()">
+      <p *ngIf="MessaggioErrore" style="color:red">{{ MessaggioErrore }}</p>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 4 -->
+      <input type="text" [(ngModel)]='caratteri'>
+      <p>{{ caratteri.length }}/{{ maxCaratteri }} caratteri 
+        <span *ngIf="caratteri.length > maxCaratteri"> - Troppi caratteri</span></p>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 5 -->
+      <input type="text" [(ngModel)]="testoLive">
+      <p>In tempo reale: {{ testoLive }}</p>
+      <button (click)="confermaTesto()">Conferma</button>
+      <p>Testo confermato: {{ testoConfermato }}</p>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 6 -->
+      <button (click)="cambiaStato('Online')">Online</button>
+      <button (click)="cambiaStato('Offline')">Offline</button>
+      <button (click)="cambiaStato('In verifica')">In verifica</button>
+      <p>Stato attuale: {{ stato }}</p>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 7 -->
+      <input type="text" [(ngModel)]="nuovoElemento" placeholder="Aggiungi elemento">
+      <button (click)="aggiungiElemento()">Aggiungi</button>
+
+      <ul>
+        <li *ngFor="let elem of lista; let i = index">
+          {{ elem }}
+          <button (click)="rimuoviElemento(i)">X</button>
+        </li>
+      </ul>
+
+      <p *ngIf="lista.length === 0">La lista è vuota</p>
+    </section>
+    <hr>
+    <section> <!-- Esercizio 8 -->
+      <button (click)="cambiaColore('red')">Rosso</button>
+      <button (click)="cambiaColore('blue')">Blu</button>
+      <button (click)="cambiaDimensione(2)">Aumenta dimensione</button>
+      <button (click)="cambiaDimensione(-2)">Diminuisci dimensione</button>
+      <button (click)="toggleGrassetto()">Grassetto ON/OFF</button>
+      <button (click)="toggleAttivo()">Attiva/Disattiva</button>
+
+      <p [style.color]="coloreTesto"
+        [style.fontSize.px]="dimensione"
+        [style.fontWeight]="grassetto ? 'bold' : 'normal'"
+        [style.opacity]="attivo ? 1 : 0.5">
+        Questo è un testo modificabile
+      </p>
+    </section>
+  </body>
+</html>
